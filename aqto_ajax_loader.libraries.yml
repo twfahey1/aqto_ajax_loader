@@ -1,0 +1,18 @@
+animejs:
+  version: 1.x
+  js:
+    https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js: { type: external, minified: true }
+  dependencies:
+    - core/jquery
+ajax_loader:
+  version: 1.x
+  js:
+    js/aqto_ajax_loader.js: {}
+  css:
+    theme:
+      css/aqto_ajax_loader.css: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/drupal.ajax
+    - core/drupal.once

@@ -1,0 +1,17 @@
+<?php
+
+use Drupal\Core\Ajax\CommandInterface;
+use Drupal\Core\Ajax\AjaxResponse;
+use Drupal\Core\Ajax\ReplaceCommand;
+use Drupal\Core\Ajax\InvokeCommand;
+
+/**
+ * Implements hook_page_attachments_alter().
+ */
+function aqto_ajax_loader_page_attachments_alter(array &$attachments) {
+  // Add animeJS.
+  $attachments['#attached']['library'][] = 'aqto_ajax_loader/animejs';
+  // Add custom AJAX loader CSS and JS.
+  $attachments['#attached']['library'][] = 'aqto_ajax_loader/ajax_loader';
+}
+
