@@ -13,10 +13,32 @@
     if (true) { // Always apply our override for now.
       // Copied and modified from Drupal.ajax.prototype.beforeSend in ajax.js
       $(this.element).addClass("progress-disabled").attr("disabled", true);
-      // Modify the actualy progress throbber HTML.
+      // Modify the actual progress throbber HTML.
       this.progress.element = $(
-        '<div class="ajax-progress ajax-progress-throbber"><div class="throbber">&nbsp;</div><div class="message">Doing our thing...</div></div>'
+        '<div class="aqto-ajax-loader flex flex-col items-center space-y-2">' +
+          '<div class="throbber flex flex-col items-center space-y-2">' +
+            '<div class="w-6 h-6 bg-blue-500"></div>' +
+            '<div class="w-6 h-6 bg-blue-600"></div>' +
+            '<div class="w-6 h-6 bg-blue-700"></div>' +
+          '</div>' +
+          '<div class="message">Doing our thing...</div>' +
+        '</div>'
       );
+      // Add animeJS animations to the throbber.
+      var throbber = this.progress.element.find(".throbber div").toArray();
+
+      // Create an anime.js timeline
+      anime.timeline({ loop: true })
+        .add({
+          targets: throbber,
+          translateY: [
+            { value: '-20px', duration: 300, easing: 'easeInOutQuad' },
+            { value: '20px', duration: 300, easing: 'easeInOutQuad' },
+            { value: '0px', duration: 300, easing: 'easeInOutQuad' },
+          ],
+          delay: anime.stagger(100),
+        });
+
       // Change the position of the throbber.
       $(this.element).parent().parent().after(this.progress.element);
     } else {
@@ -25,6 +47,7 @@
       $(document).trigger("beforeSend");
     }
   };
+
   Drupal.behaviors.aqtoAjaxLoader = {
     attach: function (context, settings) {
       once('aqtoAjaxLoader', 'body', context).forEach(function (element) {
