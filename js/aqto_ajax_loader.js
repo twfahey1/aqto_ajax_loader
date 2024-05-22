@@ -36,6 +36,11 @@
             { value: '20px', duration: 300, easing: 'easeInOutQuad' },
             { value: '0px', duration: 300, easing: 'easeInOutQuad' },
           ],
+          rotate: {
+            value: '1turn',
+            duration: 900, // Same as the combined duration of translateY steps
+            easing: 'linear'
+          },
           delay: anime.stagger(100),
         });
 
