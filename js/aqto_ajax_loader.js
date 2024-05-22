@@ -16,18 +16,21 @@
       // Modify the actual progress throbber HTML.
       this.progress.element = $(
         '<div class="aqto-ajax-loader flex flex-col items-center space-y-2">' +
-          '<div class="throbber flex flex-col items-center space-y-2">' +
-            '<div class="w-6 h-6 bg-blue-500"></div>' +
-            '<div class="w-6 h-6 bg-blue-600"></div>' +
-            '<div class="w-6 h-6 bg-blue-700"></div>' +
+          '<div class="throbber-container">' +
+            '<div class="throbber flex flex-col items-center space-y-2">' +
+              '<div class="w-6 h-6 bg-blue-500"></div>' +
+              '<div class="w-6 h-6 bg-blue-600"></div>' +
+              '<div class="w-6 h-6 bg-blue-700"></div>' +
+            '</div>' +
           '</div>' +
           '<div class="message">Doing our thing...</div>' +
         '</div>'
       );
       // Add animeJS animations to the throbber.
       var throbber = this.progress.element.find(".throbber div").toArray();
+      var throbberContainer = this.progress.element.find(".throbber-container")[0];
 
-      // Create an anime.js timeline
+      // Create an anime.js timeline for the squares
       anime.timeline({ loop: true })
         .add({
           targets: throbber,
@@ -43,6 +46,15 @@
           },
           delay: anime.stagger(100),
         });
+
+      // Create an anime.js animation for the container rotation
+      anime({
+        targets: throbberContainer,
+        rotate: '1turn',
+        duration: 2000,
+        easing: 'linear',
+        loop: true
+      });
 
       // Change the position of the throbber.
       $(this.element).parent().parent().after(this.progress.element);
