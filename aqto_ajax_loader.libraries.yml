@@ -1,18 +1,25 @@
 animejs:
-  version: 1.x
+  version: 3.2.1
   js:
-    https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js: { type: external, minified: true }
+    https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js: 
+      type: external
+      minified: true
+      weight: -10
   dependencies:
     - core/jquery
+
 ajax_loader:
-  version: 1.x
+  version: VERSION
   js:
-    js/aqto_ajax_loader.js: {}
+    js/aqto_ajax_loader.js: 
+      weight: -8
   css:
     theme:
-      css/aqto_ajax_loader.css: {}
+      css/aqto_ajax_loader.css: 
+        weight: -9
   dependencies:
     - core/jquery
     - core/drupal
     - core/drupal.ajax
     - core/drupal.once
+    - aqto_ajax_loader/animejs
