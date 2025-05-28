@@ -1,5 +1,5 @@
 name: 'aqto_ajax_loader'
 type: module
 description: 'A module'
-core_version_requirement: 10.x
+core_version_requirement: 10.x || 11.x
 package: 'Custom'
